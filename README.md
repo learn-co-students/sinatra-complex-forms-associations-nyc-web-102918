@@ -58,7 +58,7 @@ Open up `app/views/owners/new.erb` and you should see the following code:
 <form action="/owners" method="POST">
   <label>Name:</label>
 
-  <br></br>
+  <br>
 
   <input type="text" name="owner[name]" id="owner_name">
 
@@ -158,10 +158,10 @@ This will be fairly simple. All we need to do is add a section to our form for c
 
 ```html
 and/or, create a new pet:
-    <br></br>
+    <br>
     <label>name:</label>
       <input  type="text" name="pet[name]"></input>
-    <br></br>
+    <br>
 ```
 
 Now our whole form should look something like this:
@@ -172,27 +172,27 @@ Now our whole form should look something like this:
 <form action="/owners" method="POST">
   <label>Name:</label>
 
-  <br></br>
+  <br>
 
   <input type="text" name="owner[name]" id="owner_name">
 
-  <br></br>
+  <br>
 
   <label>Choose an existing pet:</label>
 
-  <br></br>
+  <br>
 
   <%@pets.each do |pet|%>
     <input type="checkbox" name="owner[pet_ids][]" id="<%=pet.id%>" value="<%=pet.id%>"><%=pet.name%></input>
   <%end%>
 
-  <br></br>
+  <br>
 
     <label>and/or, create a new pet:</label>
-    <br></br>
+    <br>
     <label>name:</label>
       <input  type="text" name="pet[name]"></input>
-    <br></br>
+    <br>
   <input type="submit" value="Create Owner">
 </form>
 ```
@@ -266,27 +266,27 @@ Let's do it!
   <input id="hidden" type="hidden" name="_method" value="patch">  
   <label>Name:</label>
 
-  <br></br>
+  <br>
 
   <input type="text" name="owner[name]" id="owner_name" value="<%=@owner.name%>">
 
-  <br></br>
+  <br>
 
   <label>Choose an existing pet:</label>
 
-  <br></br>
+  <br>
 
   <%@pets.each do |pet|%>
     <input type="checkbox" name="owner[pet_ids][]" id="<%= pet.id%>" value="<%=pet.id%>" <%='checked' if @owner.pets.include?(pet) %>><%=pet.name%></input>
   <%end%>
 
-  <br></br>
+  <br>
 
   <label>and/or, create a new pet:</label>
-  <br></br>
+  <br>
   <label>name:</label>
     <input  type="text" name="pet[name]" id="pet_name"></input>
-  <br></br>
+  <br>
   <input type="submit" value="Update Owner">
 </form>
 ```
