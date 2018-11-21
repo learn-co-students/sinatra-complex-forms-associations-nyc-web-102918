@@ -69,21 +69,21 @@ describe "Pets Controller" do
       @pet = Pet.create(:name => "Chewie", :owner_id => @owner.id)
     end
 
-    it "can visit '/owners/:id/edit' " do
-      get "/owners/#{@owner.id}/edit"
+    it "can visit '/pets/:id/edit' " do
+      get "/pets/#{@pet.id}/edit"
       expect(last_response.status).to eq(200)
     end
 
     it " loads form to edit a pet and his owner" do
       visit "/pets/#{@pet.id}/edit"
-      expect(page).to have_field('pet_name')
+      expect(page).to have_field('pet[name]')
       expect(page.has_checked_field?(@owner.id)).to eq(true)
       expect(page).to have_field('owner[name]')
     end
 
      it "edit's the pet's name" do
       visit "/pets/#{@pet.id}/edit"
-      fill_in "pet_name", :with => "Chewie Darling"
+      fill_in "pet[name]", :with => "Chewie Darling"
       click_button "Update Pet"
       expect(Pet.last.name).to eq("Chewie Darling")
     end
@@ -98,7 +98,7 @@ describe "Pets Controller" do
 
     it "edit's the pet's owner with a new owner" do
       visit "/pets/#{@pet.id}/edit"
-      fill_in "owner_name", :with => "Samantha"
+      fill_in "owner[name]", :with => "Samantha"
       click_button "Update Pet"
       expect(Pet.last.owner.name).to eq("Samantha")
     end
